@@ -81,14 +81,14 @@ function Circle(x, y, dx, dy, radius) {
 
 var circleArray = [];
 // We are using array to save each circles discription
-// this is way more optimize.
+//  var radius = 9;this is way more optimize.
 
-for(var i = 0; i < 100; i++){
+for(var i = 0; i < 9000; i++){
     var radius = 9;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
-    var dx = (Math.random() - 0.2);
-    var dy = (Math.random() - 0.2);
+    var dx = (Math.random() - 0.5);
+    var dy = (Math.random() - 0.5);
 
     circleArray.push(new Circle(x, y, dx, dy, radius));
 }
