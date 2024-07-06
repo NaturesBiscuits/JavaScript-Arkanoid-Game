@@ -80,6 +80,8 @@ function Circle(x, y, dx, dy, radius) {
 }
 
 var circleArray = [];
+// We are using array to save each circles discription
+// this is way more optimize.
 
 for(var i = 0; i < 100; i++){
     var radius = 9;
