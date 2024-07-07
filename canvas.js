@@ -50,8 +50,15 @@ var mouse = {
     y: undefined
 }
 
-var maxRadius = 40;
-var minRadius = 2;
+var maxRadius = 30;
+// var minRadius = 2;
+
+var colorArray = [
+    'red',
+    'blue',
+    'green',
+    'yellow',
+];
 
 // This is for movement right now.
 // Maybe I'll add exploding when left clicked?.
@@ -60,12 +67,20 @@ window.addEventListener('mousemove', function(event) {
     mouse.y = event.y;
 });
 
-function Circle(x, y, dx, dy, radius) {
+window.addEventListener('resize', function(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    init()
+});
+
+function Circle(x, y, dx, dy, radius) {{}
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
     this.radius = radius;
+    this.minRadius = radius;
     var r = Math.random() * 256;
     var g = Math.random() * 256;
     var b = Math.random() * 256;
@@ -73,9 +88,7 @@ function Circle(x, y, dx, dy, radius) {
     this.draw = function() {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        c.strokeStyle = `rgb(${r}, ${g}, ${b})`;
-        c.stroke();
-        c.fillStyle = 'black'
+        c.fillStyle = `rgb(${r}, ${g}, ${b})`;
         c.fill();
     } 
 
@@ -98,7 +111,7 @@ function Circle(x, y, dx, dy, radius) {
                     if (this.radius < maxRadius) {
                         this.radius += 1;
                     }
-        } else if(this.radius > minRadius){
+        } else if(this.radius > this.minRadius){
             this.radius -= 1;
         }
 
@@ -106,18 +119,24 @@ function Circle(x, y, dx, dy, radius) {
     }
 }
 
+
 var circleArray = [];
+
+function init() {
 // We are using array to save each circles discription
 //  var radius = 9;this is way more optimize.
 
-for(var i = 0; i < 800; i++){
-    var radius = 9;
+circleArray = [];
+
+for(var i = 0; i < 300; i++){
+    var radius = Math.random() * 3 + 1;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
     var dx = (Math.random() - 0.5 );
     var dy = (Math.random() - 0.5);
 
     circleArray.push(new Circle(x, y, dx, dy, radius));
+    }
 }
 
 console.log(circleArray);
@@ -130,6 +149,7 @@ function animate() {
         circleArray[i].update();
     }
 }
+init();
 animate();
 
 // This is something cool.
