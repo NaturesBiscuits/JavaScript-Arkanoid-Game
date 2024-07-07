@@ -45,6 +45,8 @@ var c = canvas.getContext('2d');
 // var dy = (Math.random() - 0.5) * 8;
 // var radius = 30;
 
+
+
 function Circle(x, y, dx, dy, radius) {
     this.x = x;
     this.y = y;
@@ -79,15 +81,21 @@ function Circle(x, y, dx, dy, radius) {
     }
 }
 
+// This is for movement right now,
+window.addEventListener('mousemove', function() {
+    console.log('moving');
+});
+
+
 var circleArray = [];
 // We are using array to save each circles discription
 //  var radius = 9;this is way more optimize.
 
-for(var i = 0; i < 9000; i++){
-    var radius = 9;
+for(var i = 0; i < 100; i++){
+    var radius = 30;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
-    var dx = (Math.random() - 0.5);
+    var dx = (Math.random() - 0.5 );
     var dy = (Math.random() - 0.5);
 
     circleArray.push(new Circle(x, y, dx, dy, radius));
