@@ -71,8 +71,21 @@ window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    init()
 });
+
+var circleArray = [];
+
+for(var i = 0; i < 300; i++){
+    var radius = Math.random() * 3 + 1;
+    var x = Math.random() * (innerWidth - radius * 2) + radius;
+    var y = Math.random() * (innerHeight - radius * 2) + radius;
+    var dx = (Math.random() - 0.5 );
+    var dy = (Math.random() - 0.5);
+
+    circleArray.push(new Circle(x, y, dx, dy, radius));
+    }
+
+
 
 function Circle(x, y, dx, dy, radius) {{}
     this.x = x;
@@ -119,26 +132,6 @@ function Circle(x, y, dx, dy, radius) {{}
     }
 }
 
-
-var circleArray = [];
-
-function init() {
-// We are using array to save each circles discription
-//  var radius = 9;this is way more optimize.
-
-circleArray = [];
-
-for(var i = 0; i < 300; i++){
-    var radius = Math.random() * 3 + 1;
-    var x = Math.random() * (innerWidth - radius * 2) + radius;
-    var y = Math.random() * (innerHeight - radius * 2) + radius;
-    var dx = (Math.random() - 0.5 );
-    var dy = (Math.random() - 0.5);
-
-    circleArray.push(new Circle(x, y, dx, dy, radius));
-    }
-}
-
 console.log(circleArray);
 
 function animate() {
@@ -149,7 +142,7 @@ function animate() {
         circleArray[i].update();
     }
 }
-init();
+
 animate();
 
 // This is something cool.
