@@ -45,7 +45,20 @@ var c = canvas.getContext('2d');
 // var dy = (Math.random() - 0.5) * 8;
 // var radius = 30;
 
+var mouse = {
+    x: undefined,
+    y: undefined
+}
 
+var maxRadius = 40;
+var minRadius = 2;
+
+// This is for movement right now.
+// Maybe I'll add exploding when left clicked?.
+window.addEventListener('mousemove', function(event) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+});
 
 function Circle(x, y, dx, dy, radius) {
     this.x = x;
@@ -77,22 +90,28 @@ function Circle(x, y, dx, dy, radius) {
         this.x += this.dx;
         this.y += this.dy;
 
+        // interactivity
+        if (mouse.x - this.x < 50 
+            && mouse.x - this.x > -50
+              && mouse.y - this.y < 50
+                && mouse.y - this.y > -50){
+                    if (this.radius < maxRadius) {
+                        this.radius += 1;
+                    }
+        } else if(this.radius > minRadius){
+            this.radius -= 1;
+        }
+
         this.draw();
     }
 }
-
-// This is for movement right now,
-window.addEventListener('mousemove', function() {
-    console.log('moving');
-});
-
 
 var circleArray = [];
 // We are using array to save each circles discription
 //  var radius = 9;this is way more optimize.
 
-for(var i = 0; i < 100; i++){
-    var radius = 30;
+for(var i = 0; i < 800; i++){
+    var radius = 9;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
     var dx = (Math.random() - 0.5 );
