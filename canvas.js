@@ -53,12 +53,6 @@ var mouse = {
 var maxRadius = 30;
 // var minRadius = 2;
 
-var colorArray = [
-    'red',
-    'blue',
-    'green',
-    'yellow',
-];
 
 // This is for movement right now.
 // Maybe I'll add exploding when left clicked?.
